@@ -1,10 +1,10 @@
-package liga.warehouse.app;
+package liga.warehouse.core;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class WarehouseApplicationTests {
+class CoreApplicationTests {
 
     @Test
     void contextLoads() {
