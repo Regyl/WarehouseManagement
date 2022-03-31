@@ -1,13 +1,13 @@
-package liga.warehouse.app;
+package liga.warehouse.core;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class WarehouseApplication {
+public class CoreApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(WarehouseApplication.class, args);
+        SpringApplication.run(CoreApplication.class, args);
     }
 
 }
