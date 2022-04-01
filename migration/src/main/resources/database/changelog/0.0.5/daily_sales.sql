@@ -1,0 +1,7 @@
+CREATE SEQUENCE IF NOT EXISTS daily_sale_seq START 1;
+CREATE TABLE IF NOT EXISTS daily_sale
+(
+    id   BIGINT PRIMARY KEY DEFAULT NEXTVAL('logging_seq'),
+    date DATE  NOT NULL UNIQUE,
+    sum  FLOAT NOT NULL
+);

@@ -4,6 +4,7 @@ import liga.warehouse.core.exception.EntityNotFoundException;
 import liga.warehouse.core.repository.SaleRepository;
 import liga.warehouse.coreapi.model.Sale;
 import liga.warehouse.coreapi.service.SaleService;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
@@ -15,6 +16,12 @@ public class SaleServiceImpl implements SaleService {
 
     public SaleServiceImpl(SaleRepository repository) {
         this.repository = repository;
+    }
+
+    @Override
+    @Scheduled(cron = "0 0 * * *")
+    public void unloadingDailySales() {
+        Set<Sale> dailySales = repository.findAllDaily();
     }
 
     @Override
