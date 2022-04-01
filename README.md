@@ -2,7 +2,9 @@
 
 ## Realise functionality:
 1. Elaborated modules architecture
-2. 
+2. Database migrations with *Liquibase*
+3. Connection to database with *MyBatis*
+4. Unit tests (mybatis, ...)
 
 
 ## Assignment's text:

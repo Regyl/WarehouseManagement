@@ -1,12 +1,13 @@
 package liga.warehouse.core.repository;
 
+import java.util.Optional;
 import java.util.Set;
 
 public interface CrudRepository<T> {
 
-    T findById(Long id);
+    Optional<T> findById(Long id);
 
-    T save(T entity);
+    int save(T entity);
 
     void deleteById(Long id);
 

@@ -11,5 +11,16 @@
         SELECT n.* FROM nomenclature n WHERE id=#{id};
     </select>
 
+    <select id="findAll" resultMap="nomenclature">
+        SELECT n.* FROM nomenclature n;
+    </select>
 
+    <insert id="save" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+        INSERT INTO nomenclature (name, product_type, frequency_type, country, create_timestamp)
+        VALUES (#{name}, #{productType}, #{frequencyType}, #{country}, #{createTimestamp});
+    </insert>
+
+    <delete id="deleteById">
+        DELETE FROM nomenclature WHERE id=#{id};
+    </delete>
 </mapper>

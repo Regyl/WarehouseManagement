@@ -1,4 +1,4 @@
-package liga.warehouse.coreapi.model.enumeration;
+package liga.warehouse.dto.enumeration;
 
 public enum FrequencyType {
     DAILY, //повседневный спрос
