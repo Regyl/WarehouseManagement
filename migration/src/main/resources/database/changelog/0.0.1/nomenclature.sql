@@ -17,5 +17,7 @@ CREATE TABLE IF NOT EXISTS product
     quantity        DOUBLE PRECISION NOT NULL,
     expires_at      DATE,
     nomenclature_id BIGINT           NOT NULL UNIQUE,
-    FOREIGN KEY (nomenclature_id) REFERENCES nomenclature (id)
+    CHECK (quantity > 0),
+    CHECK (cost > 0),
+    FOREIGN KEY (nomenclature_id) REFERENCES nomenclature (id) ON DELETE CASCADE
 );

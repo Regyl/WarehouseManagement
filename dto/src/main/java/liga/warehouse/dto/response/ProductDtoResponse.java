@@ -1,4 +1,4 @@
-package liga.warehouse.coreapi.model;
+package liga.warehouse.dto.response;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -7,9 +7,9 @@ import java.time.LocalDate;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class Product extends AbstractEntity {
+public class ProductDtoResponse extends AbstractDtoResponse {
 
-    private Nomenclature nomenclature;
+    private Long nomenclatureId;
 
     private Float cost;
 

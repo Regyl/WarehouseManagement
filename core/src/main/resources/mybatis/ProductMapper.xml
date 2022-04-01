@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="liga.warehouse.core.repository.ProductRepository">
+
+    <resultMap id="product" type="liga.warehouse.coreapi.model.Product" autoMapping="true">
+        <id property="id" column="id" jdbcType="BIGINT"/>
+
+        <association property="nomenclature">
+            <result property="id" column="nomenclature_id" jdbcType="BIGINT"/>
+        </association>
+    </resultMap>
+
+    <select id="findById" resultMap="product">
+        SELECT p.*, n.id AS nomenclature_id, name, product_type, frequency_type, country, create_timestamp FROM product p
+        INNER JOIN nomenclature n ON n.id = p.nomenclature_id
+        WHERE p.id=#{id};
+    </select>
+
+    <select id="findAll" resultMap="product">
+        SELECT p.*, n.* FROM product p
+        INNER JOIN nomenclature n ON n.id = p.nomenclature_id;
+    </select>
+
+    <insert id="save" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+        INSERT INTO product (cost, quantity, expires_at, nomenclature_id)
+        VALUES (#{cost}, #{quantity}, #{expiresAt}, #{nomenclature.id});
+    </insert>
+
+    <delete id="deleteById">
+        DELETE FROM product WHERE id=#{id};
+    </delete>
+    
+    <update id="update" parameterType="liga.warehouse.coreapi.model.Product">
+        UPDATE product
+        SET cost = #{cost}, quantity = #{quantity}, expires_at = #{expiresAt}, nomenclature_id = #{nomenclature.id}
+        WHERE id=#{id};
+    </update>
+
+</mapper>

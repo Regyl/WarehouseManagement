@@ -3,17 +3,17 @@ package liga.warehouse.coreapi.model;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class Product extends AbstractEntity {
+public class Sale extends AbstractEntity {
 
-    private Nomenclature nomenclature;
+    private Product product;
 
-    private Float cost;
+    private LocalDateTime timestamp;
 
     private Double quantity;
 
-    private LocalDate expiresAt;
+    private Float sum;
 }

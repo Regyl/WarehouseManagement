@@ -1,4 +1,4 @@
-package liga.warehouse.coreapi.model;
+package liga.warehouse.dto.response;
 
 import liga.warehouse.dto.enumeration.FrequencyType;
 import liga.warehouse.dto.enumeration.ProductType;
@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class Nomenclature extends AbstractEntity {
+public class NomenclatureDtoResponse extends AbstractDtoResponse {
 
     private String name;
 
@@ -20,5 +20,4 @@ public class Nomenclature extends AbstractEntity {
     private String country;
 
     private LocalDateTime createTimestamp;
-
 }
