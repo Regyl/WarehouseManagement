@@ -30,19 +30,20 @@
         <java.version>11</java.version>
         <lombok.version>1.18.22</lombok.version>
         <spring.boot.version>2.3.0.RELEASE</spring.boot.version>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <maven.compiler.plugin>3.8.1</maven.compiler.plugin>
 
         <mybatis.version>2.2.2</mybatis.version>
         <liquibase.version>4.8.0</liquibase.version>
         <liquibase.plugin.version>4.8.0</liquibase.plugin.version>
         <postgresql.version>42.3.3</postgresql.version>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
-        <maven.compiler.plugin>3.8.1</maven.compiler.plugin>
-
-        <springdoc.version>1.6.6</springdoc.version>
+        <modelmapper.version>3.1.0</modelmapper.version>
 
         <spring.boot.test.version>2.1.2.RELEASE</spring.boot.test.version>
         <spring.security.test>5.3.13.RELEASE</spring.security.test>
+
+        <springdoc.version>1.6.6</springdoc.version>
     </properties>
 
     <dependencies>
