@@ -24,6 +24,18 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
+    public void save(Role entity) {
+        repository.save(entity);
+    }
+
+    @Override
+    public Role deleteById(Long id) {
+        Role role = findById(id);
+        repository.deleteById(id);
+        return role;
+    }
+
+    @Override
     public Role findByAuthority(String authority) {
         return repository.findByAuthority(authority)
                 .orElseThrow(EntityNotFoundException.supplierOf(Role.class, authority));
@@ -32,6 +44,11 @@ public class RoleServiceImpl implements RoleService {
     @Override
     public Set<Role> findAll() {
         return repository.findAll();
+    }
+
+    @Override
+    public void update(Role entity) {
+        repository.update(entity);
     }
 
     @Override

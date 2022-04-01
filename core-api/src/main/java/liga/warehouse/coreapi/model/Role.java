@@ -9,9 +9,6 @@ import org.springframework.security.core.GrantedAuthority;
 @EqualsAndHashCode(callSuper = true)
 public class Role extends AbstractEntity implements GrantedAuthority {
 
-    private Authority authority;
+    private String authority;
 
-    public String getAuthority() {
-        return authority.name();
-    }
 }

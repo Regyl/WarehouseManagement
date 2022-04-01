@@ -26,4 +26,17 @@
         </foreach>
     </insert>
 
+    <insert id="save" keyProperty="id" keyColumn="id" useGeneratedKeys="true">
+        INSERT INTO role (authority) VALUES (#{authority});
+    </insert>
+
+    <delete id="deleteById">
+        DELETE FROM role WHERE id=#{id};
+    </delete>
+
+    <update id="update" parameterType="liga.warehouse.coreapi.model.Role">
+        UPDATE role
+        SET authority = #{authority}
+        WHERE id=#{id};
+    </update>
 </mapper>

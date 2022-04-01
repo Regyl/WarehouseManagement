@@ -8,6 +8,6 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 public class RoleDtoResponse extends AbstractDtoResponse {
 
-    private Authority authority;
+    private String authority;
 
 }

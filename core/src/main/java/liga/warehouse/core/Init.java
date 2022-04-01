@@ -24,7 +24,7 @@ public class Init {
         if(roles.isEmpty()) {
             for(Authority authority : Authority.values()) {
                 Role role = new Role();
-                role.setAuthority(authority);
+                role.setAuthority(authority.name());
                 roles.add(role);
             }
             roleService.saveAll(roles);
