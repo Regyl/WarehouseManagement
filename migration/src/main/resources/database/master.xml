@@ -7,5 +7,6 @@
     <include file="changelog/0.0.1-initial_db.xml" relativeToChangelogFile="true"/>
     <include file="changelog/0.0.2-sales.xml" relativeToChangelogFile="true"/>
     <include file="changelog/0.0.3-security.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/0.0.4-logging.xml" relativeToChangelogFile="true"/>
 
 </databaseChangeLog>

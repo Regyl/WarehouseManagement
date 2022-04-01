@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="liga.warehouse.core.repository.LogEntityRepository">
+
+    <resultMap id="log" type="liga.warehouse.coreapi.model.LogEntity" autoMapping="true">
+        <id property="id" column="id" jdbcType="BIGINT"/>
+    </resultMap>
+
+    <select id="findById" resultMap="log">
+        SELECT l.* FROM logging l WHERE id = #{id};
+    </select>
+
+    <select id="findAll" resultMap="log">
+        SELECT l.* FROM logging l;
+    </select>
+
+    <insert id="save" keyProperty="id" keyColumn="id" useGeneratedKeys="true">
+        INSERT INTO logging (full_name, username) VALUES (#{fullName}, #{username});
+    </insert>
+
+    <delete id="deleteById">
+        DELETE FROM logging WHERE id=#{id};
+    </delete>
+
+    <update id="update" parameterType="liga.warehouse.coreapi.model.LogEntity">
+        UPDATE logging
+        SET full_name = #{fullName}, username = #{username}
+        WHERE id=#{id};
+    </update>
+</mapper>
