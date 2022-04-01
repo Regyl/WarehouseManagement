@@ -1,0 +1,3 @@
+DROP SEQUENCE IF EXISTS nomenclature_seq;
+DROP TABLE IF EXISTS nomenclature CASCADE;
+
