@@ -6,6 +6,8 @@ import liga.warehouse.coreapi.model.Role;
 import liga.warehouse.coreapi.service.RoleService;
 import org.springframework.stereotype.Service;
 
+import java.util.Set;
+
 @Service
 public class RoleServiceImpl implements RoleService {
 
@@ -25,5 +27,15 @@ public class RoleServiceImpl implements RoleService {
     public Role findByAuthority(String authority) {
         return repository.findByAuthority(authority)
                 .orElseThrow(EntityNotFoundException.supplierOf(Role.class, authority));
+    }
+
+    @Override
+    public Set<Role> findAll() {
+        return repository.findAll();
+    }
+
+    @Override
+    public void saveAll(Set<Role> roles) {
+        repository.saveAll(roles);
     }
 }

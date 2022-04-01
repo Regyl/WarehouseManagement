@@ -15,5 +15,15 @@
         SELECT r.* FROM role r WHERE r.authority=#{authority};
     </select>
 
+    <select id="findAll" resultMap="role">
+        SELECT r.* FROM role r;
+    </select>
+
+    <insert id="saveAll" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+        INSERT INTO role (authority) VALUES
+        <foreach collection="collection" item="item" separator=",">
+            (#{item.authority})
+        </foreach>
+    </insert>
 
 </mapper>
