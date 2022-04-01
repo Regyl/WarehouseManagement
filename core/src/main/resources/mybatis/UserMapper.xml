@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="liga.warehouse.core.repository.UserRepository">
+
+    <resultMap id="sale" type="liga.warehouse.coreapi.model.User" autoMapping="true">
+        <id property="id" column="id" jdbcType="BIGINT"/>
+
+        <collection property="roles" resultMap="liga.warehouse.core.repository.RoleRepository.role" autoMapping="true">
+            <result property="id" column="role_id"/>
+        </collection>
+    </resultMap>
+
+    <select id="findById" resultMap="sale">
+        SELECT m.*, r.id AS role_id, r.authority FROM member m
+        INNER JOIN member_role mr on m.id = mr.member_id
+        INNER JOIN role r on r.id = mr.role_id
+        WHERE m.id = #{id};
+    </select>
+
+    <select id="findByUsername" resultMap="sale">
+        SELECT m.*, r.id AS role_id, r.authority FROM member m
+        INNER JOIN member_role mr on m.id = mr.member_id
+        INNER JOIN role r on r.id = mr.role_id
+        WHERE m.username = #{username};
+    </select>
+
+    <select id="findAll" resultMap="sale">
+        SELECT m.*, r.id AS role_id, r.authority FROM member m
+        INNER JOIN member_role mr on m.id = mr.member_id
+        INNER JOIN role r on r.id = mr.role_id;
+    </select>
+
+    <insert id="save" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+        INSERT INTO member (username, password)
+        VALUES (#{username}, #{password});
+    </insert>
+
+    <insert id="saveRoles">
+        INSERT INTO member_role (member_id, role_id) VALUES
+        <foreach collection="roles" item="item" separator=",">
+            (#{memberId}, #{item.id})
+        </foreach>
+    </insert>
+
+    <delete id="deleteById">
+        DELETE FROM member WHERE id=#{id};
+    </delete>
+
+    <update id="update" parameterType="liga.warehouse.coreapi.model.User">
+        UPDATE member
+        SET username = #{username}, password = #{password}
+        WHERE id=#{id};
+    </update>
+
+
+</mapper>
