@@ -14,4 +14,6 @@ public abstract class AbstractMapper<T, S> {
     public abstract T toEntity(S dto);
 
     public abstract AbstractDtoResponse toDto(T entity);
+
+    public abstract void update(S source, T destination);
 }

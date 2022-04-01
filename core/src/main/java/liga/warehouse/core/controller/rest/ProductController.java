@@ -37,6 +37,13 @@ public class ProductController implements IProductController {
     }
 
     @Override
+    public void updateById(Long id, ProductDto dto) {
+        Product product = service.findById(id);
+        mapper.update(dto, product);
+        service.update(product);
+    }
+
+    @Override
     public ProductDtoResponse deleteById(Long id) {
         Product product = service.deleteById(id);
         return mapper.toDto(product);

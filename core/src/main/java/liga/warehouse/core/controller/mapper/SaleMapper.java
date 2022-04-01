@@ -32,4 +32,9 @@ public class SaleMapper extends AbstractMapper<Sale, SaleDto> {
     public AbstractDtoResponse toDto(Sale entity) {
         throw new UnsupportedOperationException();
     }
+
+    @Override
+    public void update(SaleDto source, Sale destination) {
+        throw new UnsupportedOperationException();
+    }
 }

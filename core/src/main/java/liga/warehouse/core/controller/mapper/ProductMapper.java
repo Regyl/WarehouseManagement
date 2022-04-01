@@ -30,4 +30,9 @@ public class ProductMapper extends AbstractMapper<Product, ProductDto> {
     public ProductDtoResponse toDto(Product entity) {
         return mapper.map(entity, ProductDtoResponse.class);
     }
+
+    @Override
+    public void update(ProductDto source, Product destination) {
+        mapper.map(source, destination);
+    }
 }

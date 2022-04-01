@@ -25,6 +25,13 @@ public class NomenclatureController implements INomenclatureController {
     }
 
     @Override
+    public void updateById(Long id, NomenclatureDto dto) {
+        Nomenclature nomenclature = service.findById(id);
+        mapper.update(dto, nomenclature);
+        service.update(nomenclature);
+    }
+
+    @Override
     public NomenclatureDtoResponse deleteById(Long id) {
         Nomenclature nomenclature = service.deleteById(id);
         return mapper.toDto(nomenclature);

@@ -22,4 +22,9 @@ public class NomenclatureMapper extends AbstractMapper<Nomenclature, Nomenclatur
     public NomenclatureDtoResponse toDto(Nomenclature entity) {
         return mapper.map(entity, NomenclatureDtoResponse.class);
     }
+
+    @Override
+    public void update(NomenclatureDto source, Nomenclature destination) {
+        mapper.map(source, destination);
+    }
 }
