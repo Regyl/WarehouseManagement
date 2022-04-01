@@ -3,7 +3,6 @@ package liga.warehouse.coreapi.model;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Data

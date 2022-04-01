@@ -6,17 +6,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import javax.validation.Valid;
-import java.util.List;
 import java.util.Set;
 
 public interface CrudController<T, S> {
 
     @DeleteMapping("/{id}")
-    void deleteById(@PathVariable Long id);
+    S deleteById(@PathVariable Long id);
 
     @GetMapping("/")
     Set<S> findAll();
@@ -27,5 +25,7 @@ public interface CrudController<T, S> {
     @PostMapping("/")
     @ResponseStatus(HttpStatus.CREATED)
     void save(@RequestBody @Valid T dto);
+
+//    @PatchMapping("/") TODO:
 
 }

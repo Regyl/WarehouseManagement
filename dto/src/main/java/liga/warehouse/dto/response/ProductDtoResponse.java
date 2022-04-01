@@ -1,6 +1,5 @@
 package liga.warehouse.dto.response;
 
-import liga.warehouse.dto.request.ProductDto;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

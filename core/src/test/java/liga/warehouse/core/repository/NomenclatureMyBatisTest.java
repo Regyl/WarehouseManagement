@@ -4,7 +4,8 @@ import liga.warehouse.coreapi.model.Nomenclature;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 
 public class NomenclatureMyBatisTest extends MyBatisTest {

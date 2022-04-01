@@ -18,6 +18,11 @@ public class NomenclatureServiceImpl implements NomenclatureService {
     }
 
     @Override
+    public void update(Nomenclature entity) {
+        repository.update(entity);
+    }
+
+    @Override
     public Nomenclature findById(Long id) {
         return repository.findById(id)
                 .orElseThrow(EntityNotFoundException.supplierOf(Nomenclature.class, id));
@@ -29,8 +34,10 @@ public class NomenclatureServiceImpl implements NomenclatureService {
     }
 
     @Override
-    public void deleteById(Long id) {
+    public Nomenclature deleteById(Long id) {
+        Nomenclature nomenclature = findById(id);
         repository.deleteById(id);
+        return nomenclature;
     }
 
     @Override

@@ -1,4 +1,6 @@
 package liga.warehouse.coreapi.service;
 
-public interface SaleService {
+import liga.warehouse.coreapi.model.Sale;
+
+public interface SaleService extends CrudService<Sale> {
 }

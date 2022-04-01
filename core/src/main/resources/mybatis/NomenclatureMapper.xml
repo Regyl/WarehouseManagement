@@ -23,4 +23,12 @@
     <delete id="deleteById">
         DELETE FROM nomenclature WHERE id=#{id};
     </delete>
+
+    <update id="update" parameterType="liga.warehouse.coreapi.model.Nomenclature">
+        UPDATE nomenclature
+        SET name = #{name}, product_type = #{productType},
+            frequency_type = #{frequencyType}, country = #{country}
+        WHERE id=#{id};
+    </update>
+
 </mapper>

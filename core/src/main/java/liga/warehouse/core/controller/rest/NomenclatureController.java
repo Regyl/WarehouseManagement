@@ -1,7 +1,7 @@
 package liga.warehouse.core.controller.rest;
 
 import liga.warehouse.core.controller.mapper.NomenclatureMapper;
-import liga.warehouse.coreapi.controller.CrudController;
+import liga.warehouse.coreapi.controller.INomenclatureController;
 import liga.warehouse.coreapi.model.Nomenclature;
 import liga.warehouse.coreapi.service.NomenclatureService;
 import liga.warehouse.dto.request.NomenclatureDto;
@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/nomenclature")
-public class NomenclatureController implements CrudController<NomenclatureDto, NomenclatureDtoResponse> {
+public class NomenclatureController implements INomenclatureController {
 
     private final NomenclatureService service;
     private final NomenclatureMapper mapper;
@@ -25,8 +25,9 @@ public class NomenclatureController implements CrudController<NomenclatureDto, N
     }
 
     @Override
-    public void deleteById(Long id) {
-        service.deleteById(id);
+    public NomenclatureDtoResponse deleteById(Long id) {
+        Nomenclature nomenclature = service.deleteById(id);
+        return mapper.toDto(nomenclature);
     }
 
     @Override

@@ -6,21 +6,20 @@
     <resultMap id="sale" type="liga.warehouse.coreapi.model.Sale" autoMapping="true">
         <id property="id" column="id" jdbcType="BIGINT"/>
 
-        <association property="product">
+        <association property="product" resultMap="liga.warehouse.core.repository.ProductRepository.product" autoMapping="true">
             <result property="id" column="product_id" jdbcType="BIGINT"/>
-            <result property="quantity" column="product_quantity"
         </association>
     </resultMap>
 
     <select id="findById" resultMap="sale">
-        SELECT s.*, p.id AS product_id, cost, p.quantity AS product_quantity, expires_at, nomenclature_id
+        SELECT s.*, p.id AS product_id, cost, p.quantity AS product_quantity, expires_at
         FROM sale s
         INNER JOIN product p ON p.id = s.product_id
         WHERE s.id=#{id};
     </select>
 
     <select id="findAll" resultMap="sale">
-        SELECT s.*, p.id AS product_id, cost, p.quantity AS product_quantity, expires_at, nomenclature_id
+        SELECT s.*, p.id AS product_id, cost, p.quantity AS product_quantity, expires_at
         FROM sale s
         INNER JOIN product p ON p.id = s.product_id;
     </select>
@@ -33,5 +32,11 @@
     <delete id="deleteById">
         DELETE FROM sale WHERE id=#{id};
     </delete>
+
+    <update id="update" parameterType="liga.warehouse.coreapi.model.Sale">
+        UPDATE sale
+        SET timestamp = #{timestamp}, sum = #{sum}, quantity = #{quantity}, product_id = #{product_id}
+        WHERE id=#{id};
+    </update>
 
 </mapper>

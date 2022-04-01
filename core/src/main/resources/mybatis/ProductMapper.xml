@@ -30,5 +30,11 @@
     <delete id="deleteById">
         DELETE FROM product WHERE id=#{id};
     </delete>
+    
+    <update id="update" parameterType="liga.warehouse.coreapi.model.Product">
+        UPDATE product
+        SET cost = #{cost}, quantity = #{quantity}, expires_at = #{expiresAt}, nomenclature_id = #{nomenclature.id}
+        WHERE id=#{id};
+    </update>
 
 </mapper>

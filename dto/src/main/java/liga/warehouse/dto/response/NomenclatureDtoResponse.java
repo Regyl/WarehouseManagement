@@ -2,7 +2,6 @@ package liga.warehouse.dto.response;
 
 import liga.warehouse.dto.enumeration.FrequencyType;
 import liga.warehouse.dto.enumeration.ProductType;
-import liga.warehouse.dto.request.NomenclatureDto;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
