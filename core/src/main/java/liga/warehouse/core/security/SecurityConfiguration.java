@@ -1,5 +1,7 @@
 package liga.warehouse.core.security;
 
+import liga.warehouse.dto.enumeration.Authority;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -31,6 +33,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
+                .antMatchers("/users/**", "/roles/**").hasAuthority(Authority.OWNER.name())
+                .antMatchers(HttpMethod.GET).hasAnyAuthority(Authority.ADMIN.name(), Authority.OWNER.name(), Authority.USER.name())
+                .antMatchers(HttpMethod.POST).hasAnyAuthority(Authority.ADMIN.name(), Authority.OWNER.name())
+                .antMatchers(HttpMethod.PATCH).hasAnyAuthority(Authority.ADMIN.name(), Authority.OWNER.name())
+                .antMatchers(HttpMethod.PUT).hasAnyAuthority(Authority.ADMIN.name(), Authority.OWNER.name())
+                .antMatchers(HttpMethod.DELETE).hasAnyAuthority(Authority.ADMIN.name(), Authority.OWNER.name())
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
