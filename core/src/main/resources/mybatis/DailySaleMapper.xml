@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="liga.warehouse.core.repository.DailySaleRepository">
+
+    <resultMap id="daily_sale" type="liga.warehouse.coreapi.model.DailySale" autoMapping="true">
+        <id property="id" column="id" jdbcType="BIGINT"/>
+    </resultMap>
+
+    <insert id="save" keyProperty="id" keyColumn="id" useGeneratedKeys="true">
+        INSERT INTO daily_sale (date, sum) VALUES (#{date}, #{sum});
+    </insert>
+
+</mapper>
