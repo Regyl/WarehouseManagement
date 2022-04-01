@@ -2,6 +2,9 @@ package liga.warehouse.core.aspect;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import liga.warehouse.core.Utils;
+import liga.warehouse.core.repository.LogEntityRepository;
+import liga.warehouse.coreapi.model.LogEntity;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -13,6 +16,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Slf4j
@@ -20,7 +24,17 @@ import java.util.UUID;
 @Component
 public class LoggerAdvice {
 
-    private static final ObjectMapper MAPPER = new ObjectMapper();
+    private static final ObjectMapper MAPPER;
+
+    static {
+        MAPPER = new ObjectMapper();
+    }
+
+    private final LogEntityRepository logEntityRepository;
+
+    public LoggerAdvice(LogEntityRepository logEntityRepository) {
+        this.logEntityRepository = logEntityRepository;
+    }
 
     @Pointcut("execution(* org.springframework.security.authentication.AuthenticationManager.authenticate(..))")
     public void loginHandler() {}
@@ -56,12 +70,29 @@ public class LoggerAdvice {
         log.info(requestId + ": " + fullName + ". Args: " + MAPPER.writeValueAsString(args));
     }
 
-    private String obtainFullName(JoinPoint point, @Nullable String email) {
+    private String obtainFullName(JoinPoint point, @Nullable String username) {
         String methodName = point.getSignature().getName();
         String className = point.getTarget().getClass().toString().substring(6);
+        String fullName = className + ":" + methodName + "()";
 
-        return className + ":" + methodName + "()";
+        LogEntity entity;
+        if(username == null) {
+            entity = LogEntity.builder()
+                    .fullName(fullName)
+                    .username(Utils.getAuthenticatedUser().getUsername())
+                    .timestamp(LocalDateTime.now())
+                    .build();
+        } else {
+            entity = LogEntity.builder()
+                    .fullName(fullName)
+                    .timestamp(LocalDateTime.now())
+                    .username(username)
+                    .build();
+        }
+        logEntityRepository.save(entity);
+        return fullName;
     }
+
 
 
 }
