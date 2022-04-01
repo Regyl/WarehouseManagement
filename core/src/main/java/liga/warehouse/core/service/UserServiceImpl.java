@@ -29,8 +29,12 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public void save(User entity) {
-        repository.save(entity);
-        repository.saveRoles(entity.getId(), entity.getRoles());
+        try {
+            loadUserByUsername(entity.getUsername());
+        } catch (UsernameNotFoundException e) {
+            repository.save(entity);
+            repository.saveRoles(entity.getId(), entity.getRoles());
+        }
     }
 
     @Override
