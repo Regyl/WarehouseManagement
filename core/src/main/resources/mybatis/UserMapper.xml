@@ -38,8 +38,8 @@
 
     <insert id="saveRoles">
         INSERT INTO member_role (member_id, role_id) VALUES
-        <foreach collection="collection" item="item" separator=",">
-            (#{id}, #{item.id})
+        <foreach collection="roles" item="item" separator=",">
+            (#{memberId}, #{item.id})
         </foreach>
     </insert>
 

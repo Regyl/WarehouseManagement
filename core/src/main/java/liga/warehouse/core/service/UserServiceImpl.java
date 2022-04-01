@@ -7,6 +7,7 @@ import liga.warehouse.coreapi.service.UserService;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Set;
 
@@ -26,8 +27,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public void save(User entity) {
         repository.save(entity);
+        repository.saveRoles(entity.getId(), entity.getRoles());
     }
 
     @Override
