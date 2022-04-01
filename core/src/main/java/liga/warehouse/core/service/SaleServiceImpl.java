@@ -28,10 +28,11 @@ public class SaleServiceImpl implements SaleService {
     @Override
     @Scheduled(cron = "0 0 * * *")
     public void unloadingDailySales() {
+        Float resultSum = 0F;
+
         List<Float> dailySales = repository.findAllDaily().stream()
                 .map(Sale::getSum)
                 .collect(Collectors.toList());
-        Float resultSum = 0F;
         for(Float item : dailySales) {
             resultSum+=item;
         }
