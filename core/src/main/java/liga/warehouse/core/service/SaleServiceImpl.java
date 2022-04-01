@@ -26,7 +26,7 @@ public class SaleServiceImpl implements SaleService {
     }
 
     @Override
-    @Scheduled(cron = "0 0 * * *")
+    @Scheduled(cron = "0 0 * * * *")
     public void unloadingDailySales() {
         Float resultSum = 0F;
 
