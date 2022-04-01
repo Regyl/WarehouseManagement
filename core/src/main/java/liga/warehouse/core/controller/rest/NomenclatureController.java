@@ -1,5 +1,6 @@
 package liga.warehouse.core.controller.rest;
 
+import liga.warehouse.core.annotations.Loggable;
 import liga.warehouse.core.controller.mapper.NomenclatureMapper;
 import liga.warehouse.coreapi.controller.INomenclatureController;
 import liga.warehouse.coreapi.model.Nomenclature;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+@Loggable
 @RestController
 @RequestMapping("/nomenclature")
 public class NomenclatureController implements INomenclatureController {
