@@ -1,5 +1,6 @@
 package liga.warehouse.core.controller.rest;
 
+import liga.warehouse.core.annotations.Loggable;
 import liga.warehouse.core.controller.mapper.ProductMapper;
 import liga.warehouse.core.controller.mapper.SaleMapper;
 import liga.warehouse.coreapi.controller.IProductController;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+@Loggable
 @RestController
 @RequestMapping("/products")
 public class ProductController implements IProductController {
