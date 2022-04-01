@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="liga.warehouse.core.repository.SaleRepository">
+
+    <resultMap id="sale" type="liga.warehouse.coreapi.model.Sale" autoMapping="true">
+        <id property="id" column="id" jdbcType="BIGINT"/>
+
+        <association property="product">
+            <result property="id" column="product_id" jdbcType="BIGINT"/>
+            <result property="quantity" column="product_quantity"
+        </association>
+    </resultMap>
+
+    <select id="findById" resultMap="sale">
+        SELECT s.*, p.id AS product_id, cost, p.quantity AS product_quantity, expires_at, nomenclature_id
+        FROM sale s
+        INNER JOIN product p ON p.id = s.product_id
+        WHERE s.id=#{id};
+    </select>
+
+    <select id="findAll" resultMap="sale">
+        SELECT s.*, p.id AS product_id, cost, p.quantity AS product_quantity, expires_at, nomenclature_id
+        FROM sale s
+        INNER JOIN product p ON p.id = s.product_id;
+    </select>
+
+    <insert id="save" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+        INSERT INTO sale (timestamp, sum, quantity, product_id)
+        VALUES (#{timestamp}, #{sum}, #{quantity}, #{product.id});
+    </insert>
+
+    <delete id="deleteById">
+        DELETE FROM sale WHERE id=#{id};
+    </delete>
+
+</mapper>
