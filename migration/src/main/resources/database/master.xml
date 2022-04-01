@@ -8,5 +8,6 @@
     <include file="changelog/0.0.2-sales.xml" relativeToChangelogFile="true"/>
     <include file="changelog/0.0.3-security.xml" relativeToChangelogFile="true"/>
     <include file="changelog/0.0.4-logging.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/0.0.5-daily_sales.xml" relativeToChangelogFile="true"/>
 
 </databaseChangeLog>

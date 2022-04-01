@@ -18,6 +18,11 @@
         WHERE s.id=#{id};
     </select>
 
+    <select id="findAllDaily" resultMap="sale">
+        SELECT s.* FROM sale s
+        WHERE timestamp between current_timestamp AND ('yesterday'::TIMESTAMP)
+    </select>
+
     <select id="findAll" resultMap="sale">
         SELECT s.*, p.id AS product_id, cost, p.quantity AS product_quantity, expires_at
         FROM sale s
